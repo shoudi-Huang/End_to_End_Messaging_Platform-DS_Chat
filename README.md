@@ -3,6 +3,8 @@
 ## Project Overview
 **DS Chat** is a secure end-to-end messaging platform designed for undergraduate students in the School of Computer Science at the University of Sydney. The platform allows students to share academic experiences, seek help, and access a knowledge repository of useful learning materials. The project is divided into two main parts: **Security** and **Usability**.
 
+<img src="home_page.png" alt="Home Page" width="800" height="500" />
+
 ### Security Part
 The security component focuses on implementing a secure messaging system that ensures confidentiality, integrity, and authentication. Key features include:
 - **Secure Password Storage**: Passwords are securely stored on the server using hashing techniques to prevent offline pre-computation attacks.
