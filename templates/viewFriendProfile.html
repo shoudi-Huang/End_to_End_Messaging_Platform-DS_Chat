@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+<body>
+</center>
+<button type="button" onclick="window.location.href='{{ url_for('friendsList')}}'" style="font-size: 16px; padding: 8px 20px; cursor: pointer; border-radius: 16px; text-align:left"><b>Back</b></button>
+<center>
+<h1 style="color:green">Friend's Profile</h1>
+<img src="{{ url_for('static', filename='img/user-512.png') }}" alt="Some stuff that popped out of tensor flow" height="42%">
+<p>
+<h3>Username: <i>{{friend_username}}</i></h3>
+<b>Self Introduction: </b><i>I'm a second year student who majoring in computer science. <br>I like piano and hoop music. <br>My research interest is software and website development.</i>
+<br><br>
+<b>Email: </b><i>xxxxxxxx@uni.sydney.edu.au</i>
+<br><br>
+<b>Location: </b><i>sydney.NSW.Australia</i>
+<br><br>
+<b>Degree of Study: </b><i>Advance Computing</i>
+</p>
+</body>

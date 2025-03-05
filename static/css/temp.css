@@ -1,0 +1,111 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.flashes {
+    margin: 0;
+    font-size: 22px;
+    padding: 5px;
+    list-style: none;
+    text-align: center;
+    color: #FFF;
+}
+
+li {
+
+}
+
+li a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px 18px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+li b {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li b:hover {
+    background-color: #111;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: lightgrey;
+}
+
+body {
+  min-height: 100%;
+}
+
+img {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 45%;
+    max-width: 45%;
+}
+
+html, body, {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+table.styled {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+
+table.left {
+    width: auto !important;
+    margin: 0px;
+}
+
+
+table.styled td, table.styled th {
+  padding: 16px;
+  border-radius: 12px;
+}
+
+table.styled th {
+  border-bottom: 1px solid #eee;
+}
+
+table.styled tbody tr + tr td {
+    border-top: 1px solid #eee;
+
+}
+
+.clickable-tr:hover {
+  cursor: pointer;
+  background: #efefef;
+}
+
+.clickable-td:hover {
+  cursor: pointer;
+  background: #efefef;
+}

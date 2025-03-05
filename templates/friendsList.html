@@ -1,0 +1,33 @@
+{% include 'header.html' %}
+<body>
+<style>
+table, th, td {
+  border: 2px solid green;
+}
+</style>
+<div>
+    <p>
+        <img src="{{ url_for('static', filename='img/conference-call-512.png') }}" alt="Some stuff that popped out of tensor flow" height="160px">
+    </p>
+    <h1 class="containertitle" style="color:green"> Friends List</h1>
+    <!-- Users Playlists -->
+    <table class="styled">
+        <thead>
+        <tr>
+            <td style="text-align: center">Friend's Username</td>
+        </tr>
+        </thead>
+        <tbody>
+        {%  for instance in friends %}
+            <tr>
+                <td id="friend_username" name="friend_username" style="text-align: center"><i>{{instance.username}}</i></td>
+                <td class="clickable-td" onclick="window.location.href='{{ url_for('messaging', friend_username=instance.username)}}'" style="text-align: center"><i>Contact</i></td>
+                <td class="clickable-td" onclick="window.location.href='{{ url_for('viewFriendProfile', friend_username=instance.username)}}'" style="text-align: center"><i>View Profile</i></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+</body>

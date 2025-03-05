@@ -1,0 +1,142 @@
+<head xmlns="">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/temp.css') }}">
+<script src="{{ url_for('static', filename='js/script_head.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/encryption2.js') }}"></script>
+
+<title>DS Chat</title>
+</head>
+
+<style>
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 16px 18px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+</style>
+
+<p>
+  {% if session.logged_in %}
+      <ul>
+        <li><a class="active" href="/home"><image src="{{ url_for('static', filename='img/house-512.png') }}" height="3%"></image></br>Home</a></li>
+        <div class="dropdown">
+            <br>
+            <image src="{{ url_for('static', filename='img/book-16-512.png') }}" height="3%"></image>
+            <button class="dropbtn" onclick="myFunction('Course')">Course
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="Course">
+                {% for instance in course%}
+                    <a href="{{ url_for('selectCourse', course_name=instance.course_name)}}">{{instance.course_name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="dropdown">
+            <br>
+            <image src="{{ url_for('static', filename='img/speech-bubble-5-512.png') }}" height="3%"></image>
+            <button class="dropbtn" onclick="myFunction('Messaging')">Messaging
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="Messaging">
+                <a href="/friendsList">Friends List</a>
+                <a href="/addFriends">Add Friends</a>
+                <a href="/removeFriendList">Remove Friends</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <br>
+            <image src="{{ url_for('static', filename='img/settings-5-512.png') }}" height="3%"></image>
+            <button class="dropbtn" onclick="myFunction('Setting')">Setting
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="Setting">
+                <a href="/changePersonalProfile">Change Personal Profile</a>
+                <a href="/changePassword">Change Password</a>
+                {% if user.admin == 1 %}
+                    <a href="/deleteUser">Delete User</a>
+                {% endif %}
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <!-- <li><a href="/logout"><image src="{{ url_for('static', filename='img/account-logout-512.png') }}" height="3%"></image></br>Logout</a></li> -->
+        <li><a href="/about"><image src="{{ url_for('static', filename='img/about-512.png') }}" height="3%"></image></br>About</a></li>
+        <li><b><image src="{{ url_for('static', filename='img/user-512.png') }}" height="3%"></image></br><i style="font-size: 18px;">{{user.username}}</i></b></li>
+      </ul>
+  {% else %}
+      <ul>
+          <li><a class="active" href="/home"><image src="{{ url_for('static', filename='img/house-512.png') }}" height="3%"></image></br>Home</a></li>
+          <li><a href="/about"><image src="{{ url_for('static', filename='img/about-512.png') }}" height="3%"></image></br>About</a></li>
+      </ul>
+  {% endif %}
+</p>
+
+<script>
+function myFunction(label) {
+  document.getElementById(label).classList.toggle("show");
+}
+
+window.onclick = function(e, label) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById(label);
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+
+<center>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes" style="background-color: #B00">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}

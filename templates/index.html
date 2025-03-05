@@ -1,0 +1,60 @@
+{% include 'header.html' %}
+<h1 style="font-size: 42px;"><i>DS Chat</i></h1>
+<body>
+{% if session.logged_in %}
+    <img src="{{ url_for('static', filename='img/user-512.png') }}" alt="Some stuff that popped out of tensor flow" height="40%">
+    <p>
+    <h3>Username: <i>{{ user['username'] }}</i></h3>
+    <b>Self Introduction: </b><i>I'm a third year student who majoring in computational data science. <br>I like basketball and a huge fan of NBA. <br>My research interest is Machine learning and Computer Vision.</i>
+    <br><br>
+    <b>Email: </b><i>xxxxxxxx@uni.sydney.edu.au</i>
+    <br><br>
+    <b>Location: </b><i>sydney.NSW.Australia</i>
+    <br><br>
+    <b>Degree of Study: </b><i>Advance Computing</i>
+    <br><br>
+    {% if user.admin == 1 %}
+        <b>Role: </b><i>Admin User</i>
+    {% else %}
+        <b>Role: </b><i>Regular User</i>
+    {% endif %}
+    </p>
+    <!--
+    <p>User public key, {{user['publicKey']}}.</p>
+    <p>User signature public key, {{user['signaturePublicKey']}}.</p>
+    -->
+{% else %}
+<p>
+    <img src="{{ url_for('static', filename='img/chat-512.png') }}" alt="Some stuff that popped out of tensor flow" height="42%">
+</p>
+<h3>
+    Login with Username and Password
+</h3>
+</p>
+<form name="login" class="Login" method="POST" action="/login" >
+    <input type="text" name="username" placeholder="Username" style="font-size: 18px; padding: 12px 28px;">
+    <br/>
+    <input type="password" name="password" placeholder="Password" style="font-size: 18px; padding: 12px 28px;" >
+    <br/>
+    <button type="submit" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><image src="{{ url_for('static', filename='img/account-login-512.png') }}" height="25px">Login</button>
+    <button type="button" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><a href="/register"><image src="{{ url_for('static', filename='img/add-user-2-512.png') }}" height="25px">Register</a></button>
+</form>
+{% endif %}
+
+<!--
+<button type="button" onClick='cleanStorage()'>Clean Broswer Local Storage</button>
+-->
+</body>
+<!--
+<p id="myRandText">The random numbers are: </p>
+<button type="button" onClick='generateKey()'>Generate Key</button>
+<button type="button" onclick="testing2('Text')">Encrypt</button>
+<button type="button" onClick='generateSignatureKeyPair()'>Generate Signature Key</button>
+<button type="button" onclick="testing1('cipherText')">Sign</button>
+
+<p id="Text">HOSOFWFsfhjkklmnjinlminjunmklmkniuniniiuniuiniububybughvgyvtvygv kjnjbn inkjninub iuhiuhiniun ftrcfrtyvghvtytfytbjnjkhbjgdyrdtrexrexrdxedxdfcxfdsdddxfgcvhgvjbvhjvghnb hjbhjvhgbhjbhjbhjbuyvhjm</p>
+<p id="cipherText"></p>
+<p id="Result"></p>
+<p id="Result2"></p>
+-->
+

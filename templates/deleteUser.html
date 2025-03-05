@@ -1,0 +1,30 @@
+{% include 'header.html' %}
+<body>
+<style>
+table, th, td {
+  border: 2px solid green;
+}
+</style>
+<div>
+    <h1 class="containertitle" style="color:green"> Delete User</h1>
+    <!-- Users Playlists -->
+    <table class="styled">
+        <thead>
+        <tr>
+            <td style="text-align: center">Username</td>
+            <td style="text-align: center"></td>
+        </tr>
+        </thead>
+        <tbody>
+        {%  for instance in users_list %}
+        <tr>
+            <td id="friend_username" name="friend_username" style="text-align: center"><i>{{instance.username}}</i></td>
+            <td class="clickable-td" ><b>Delete User</b></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+</body>

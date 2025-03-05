@@ -1,0 +1,13 @@
+{% include 'header.html' %}
+<body>
+<h1 style="color:green">{{course_name}}</h1>
+<br>
+<button type="button" onclick="window.location.href='{{ url_for('courseGuide', course_name=course_name)}}'" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><image src="{{ url_for('static', filename='img/literature-512.png') }}" height=40px"><b>View Course Guide</b></button>
+<br>
+<br>
+<button type="button" onclick="window.location.href='{{ url_for('viewPost', course_name=course_name)}}'" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><image src="{{ url_for('static', filename='img/folder-2-512.png') }}" height="40px"><b>View Posts</b></button>
+<br>
+<br>
+<button type="button" onclick="window.location.href='{{ url_for('createPost', course_name=course_name)}}'" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><image src="{{ url_for('static', filename='img/add-folder-512.png') }}" height="40px"><b>Create Post</b></button>
+
+</body>

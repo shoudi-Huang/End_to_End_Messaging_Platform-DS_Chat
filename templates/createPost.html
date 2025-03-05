@@ -1,0 +1,16 @@
+{% include 'header.html' %}
+<body>
+</center>
+<button type="button" onclick="window.location.href='{{ url_for('selectCourse', course_name=course_name)}}'" style="font-size: 16px; padding: 8px 20px; cursor: pointer; border-radius: 16px; text-align:left"><b>Back</b></button>
+<center>
+<h1 style="color:green">{{course_name}} Create Post</h1>
+
+<form name="createPost" class="createPost" method="POST" action="{{url_for('createPost', course_name = course_name)}}">
+    <textarea rows="1" cols="80" id = 'title' name="title" placeholder="Title" style="font-size:100%;border-radius: 12px;"></textarea>
+    <br><br>
+    <textarea rows="7" cols="80" id = 'content' name="content" placeholder="Post Content" style="font-size:100%;border-radius: 12px;"></textarea>
+    <br>
+    <br>
+    <button type="submit" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><b>Create Post</b></button>
+</form>
+</body>

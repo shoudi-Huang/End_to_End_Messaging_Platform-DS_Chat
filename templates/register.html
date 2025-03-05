@@ -1,0 +1,22 @@
+{% include 'header.html' %}
+<body>
+<p>
+    <img src="{{ url_for('static', filename='img/chat-512.png') }}" alt="Some stuff that popped out of tensor flow" height="47%">
+</p>
+<h3>
+Register with Username and Password
+</h3>
+</p>
+<p>
+<form action="/register" method="post">
+    <label style="font-size: 18px">Username: </label> <input name="username" type="text" style="font-size: 18px; padding: 12px 28px;"/>
+    </br>
+    <label style="font-size: 18px">Password: </label> <input name="password" type="password" style="font-size: 18px; padding: 12px 28px;"/>
+    </br>
+    <label style="font-size: 18px">Confirm Password: </label> <input name="confirm_password" type="password" style="font-size: 18px; padding: 12px 28px;"/>
+    </br>
+    <button type="submit" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><image src="{{ url_for('static', filename='img/add-user-2-512.png') }}" height="25px">Register</button>
+</form>
+</p>
+</body>
+</center>

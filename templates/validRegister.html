@@ -1,0 +1,34 @@
+<head xmlns="">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/temp.css') }}">
+    <script src="{{ url_for('static', filename='js/script_head.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/encryption2.js') }}"></script>
+
+    <title>DS Chat</title>
+</head>
+<ul>
+    <li><b><image src="{{ url_for('static', filename='img/user-512.png') }}" height="3%"></image></br><i style="font-size: 18px;">{{user.username}}</i></b></li>
+</ul>
+<center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes" style="background-color: #B00">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+<body>
+    <h1>Successfully Registered.</h1>
+    <p id="username" hidden>{{ user['username'] }}</p>
+    <script type="text/javascript">
+        username = document.getElementById("username").textContent;
+        generateKey(username);
+        generateSignatureKeyPair(username)
+    </script>
+    <!-- <p>Successfully Registered, Welcome {{ user['username'] }}!</p> -->
+    <meta http-equiv = "refresh" content = "2; url = {{ url_for('storePublicKey') }}" />
+    <!--<form method="POST" action="{{ url_for('storePublicKey') }}"></form>-->
+</body>

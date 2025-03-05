@@ -1,0 +1,109 @@
+{% include 'header.html' %}
+<body xmlns="http://www.w3.org/1999/html">
+<style>
+* {box-sizing: border-box}
+
+.tab {
+  float: left;
+  border: 2px solid green;
+  background-color: lightgrey;
+  width: 30%;
+  min-height: 600px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: white;
+  color: black;
+  padding: 0px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: darkgrey;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  color: white;
+  background-color: green;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 2px solid green;
+  width: 70%;
+  border-left: none;
+  min-height: 600px;
+  display: none;
+  text-align: left;
+}
+
+/* Clear floats after the tab */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</center>
+<button type="button" onclick="window.location.href='{{ url_for('selectCourse', course_name=course_name)}}'" style="font-size: 16px; padding: 8px 20px; cursor: pointer; border-radius: 16px; text-align:left"><b>Back</b></button>
+<center>
+<h1 style="color:green">{{course_name}} Posts</h1>
+
+<div class="tab">
+    {% for instance in post%}
+        <button class="tablinks" onmouseover="openPost(event, {{instance.post_id}})"><h3>{{instance.title}}</h3></button>
+        <br>
+    {% endfor %}
+</div>
+
+{% for instance in post%}
+<div id={{instance.post_id}} class="tabcontent">
+    <h2>{{instance.title}}</h2>
+    <p>{{instance.content}}</p>
+    <br>
+    <br>
+    <p style="border: 1px solid green;">
+        <h2 style="color:green">Comments: </h2>
+        {% for com in comment%}
+            {% if com.post_id == instance.post_id %}
+                <p style="background-color: white;">{{com.comment}}</p>
+            {% endif %}
+        {% endfor %}
+        <br>
+    </p>
+    <form name="createComment" class="createComment" method="POST" action="{{url_for('createComment', post_id = instance.post_id, course_name=course_name)}}">
+        <textarea rows="2" cols="50" id = 'comment' name="comment" placeholder="Comment" style="font-size:100%;border-radius: 12px;"></textarea>
+        <button type="submit" style="font-size: 16px; padding: 8px 20px; cursor: pointer; border-radius: 16px;"><b>Submit</b></button>
+    </form>
+</div>
+{% endfor %}
+
+<div class="clearfix"></div>
+
+<script>
+function openPost(evt, post_id) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(post_id).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+</body>

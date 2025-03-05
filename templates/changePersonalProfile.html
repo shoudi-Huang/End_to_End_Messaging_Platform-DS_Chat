@@ -1,0 +1,22 @@
+{% include 'header.html' %}
+<body>
+<h1 style="color:green">Change Personal Profile</h1>
+<img src="{{ url_for('static', filename='img/user-512.png') }}" alt="Some stuff that popped out of tensor flow" height="160px">
+<p>
+<label><b>Username: </b></label>
+<input type="text" id="username" name="username" style="font-size:100%">
+<br><br>
+<b>Self Introduction: </b><textarea rows="7" cols="50" id = 'message' name="message" placeholder="Message" style="font-size:100%;border-radius: 12px;">{{course_guide}}</textarea>
+<br><br>
+<label for="email"><b>Email: </b></label>
+<input type="email" id="email" name="email" style="font-size:100%">
+<br><br>
+<label><b>Location: </b></label>
+<input type="text" id="location" name="location" style="font-size:100%">
+<br><br>
+<label><b>Degree of Study: </b></label>
+<input type="text" id="degree" name="degree" style="font-size:100%">
+<br><br>
+    <button type="button" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><b>Update</b></button>
+</p>
+</body>

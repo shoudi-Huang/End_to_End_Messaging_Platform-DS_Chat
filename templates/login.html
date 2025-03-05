@@ -1,0 +1,20 @@
+{% include 'header.html' %}
+<body>
+<p>
+    <img src="{{ url_for('static', filename='img/chat-512.png') }}" alt="Some stuff that popped out of tensor flow" height="30%">
+</p>
+<h3>
+Login with Username and Password
+</h3>
+</p>
+<form name="login" class="Login" method="POST" action="/login" >
+    <input type="text" name="username" placeholder="Username" style="font-size: 18px; padding: 12px 28px;">
+    <br/>
+    <input type="password" name="password" placeholder="Password" style="font-size: 18px; padding: 12px 28px;" >
+    <br/>
+    <button type="submit" style="font-size: 16px; padding: 12px 28px; cursor: pointer; border-radius: 18px;"><image src="{{ url_for('static', filename='img/account-login-512.png') }}" height="25px">Login</button>
+</form>
+</p>
+</body>
+</center>
+

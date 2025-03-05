@@ -1,0 +1,57 @@
+{% include 'header.html' %}
+</center>
+<button type="button" onclick="window.location.href='{{ url_for('friendsList')}}'" style="font-size: 16px; padding: 8px 20px; cursor: pointer; border-radius: 16px; text-align:left"><b>Back</b></button>
+<center>
+<h1 style="color:green">Chat Room</h1>
+<p>
+<img src="{{ url_for('static', filename='img/user-512.png') }}" alt="Some stuff that popped out of tensor flow" height="80px">
+<h2><i>{{friend.username}}</i></h2>
+</p>
+<body style="background-color:lightgrey">
+    <p id="username" hidden>{{user.username}}</p>
+    <p id="sender_publicKey" hidden>{{friend.publicKey}}</p>
+    <script type="text/javascript" language="JavaScript">
+        cleanMessage("username");
+    </script>
+    {% for instance in messages%}
+        <p name="iv" hidden>{{instance.iv}}</p>
+        <p name="signature" hidden>{{instance.signature}}</p>
+        <p name="cipherText" hidden>{{instance.message}}</p>
+        {% if instance.sender_name == user.username %}
+            <p name="sender_signaturePublicKey1" hidden>{{user.signaturePublicKey}}</p>
+            <p name="plainText1" style="background-color:green;color:white;padding:10px;text-align:right;font-size:120%;border-radius: 20px;">{{instance.datetime}} {{instance.sender_name}}:</p>
+            <!--<p name="plainText1" style="background-color:lightgreen;color:black;padding:10px;text-align:right;font-size:120%;"></p>-->
+            <script type="text/javascript" language="JavaScript">
+                decryption("plainText1", "cipherText", "sender_publicKey", "iv", "signature", "sender_signaturePublicKey1", "username")
+            </script>
+        {% else %}
+            <p name="sender_signaturePublicKey2" hidden>{{friend.signaturePublicKey}}</p>
+            <p name="plainText2" style="background-color:white;color:black;padding:10px;text-align:left;font-size:120%;border-radius: 20px;">{{instance.datetime}} {{instance.sender_name}}:</p>
+            <!--<p name="plainText2" style="background-color:lightgrey;color:black;padding:10px;text-align:left;font-size:120%"></p>-->
+            <script type="text/javascript" language="JavaScript">
+                decryption("plainText2", "cipherText", "sender_publicKey", "iv", "signature", "sender_signaturePublicKey2", "username")
+            </script>
+        {% endif %}
+    {% endfor %}
+
+    <p id="receiver_publicKey" hidden>{{friend.publicKey}}</p>
+    <form name="sendMessage" class="SendMessage" method="POST" action="{{url_for('sendMessage', friend_username = friend.username)}}">
+        <textarea rows="4" cols="50" id = 'message' name="message" placeholder="Message" style="font-size:100%;border-radius: 12px;"></textarea>
+        <br>
+        <button type="button" onClick="encryption('message', 'receiver_publicKey', 'username')" style="font-size: 16px; padding: 15px 32px; cursor: pointer; border-radius: 50%;"><image src="{{ url_for('static', filename='img/save-512.png') }}" height="25px"></image>Save</button>
+        <button type="submit" style="font-size: 16px; padding: 15px 32px; cursor: pointer; border-radius: 50%;"><image src="{{ url_for('static', filename='img/send-file-512.png') }}" height="25px">Send</button>
+    </form>
+
+</body>
+<!--
+<textarea rows="4" cols="50" id = 'message1' name="message1" placeholder="Message" style="font-size:100%"></textarea>
+<button type="button" onClick="encryption('message1', 'receiver_publicKey', 'username')">Test</button>
+
+<p id = "demo"></p>
+
+<script type="javascript">
+function hp() {
+    document.getElementById("demo").innerHTML = document.getElementById("message").value;
+}
+</script>
+-->
